@@ -167,3 +167,5 @@ print(intersection) // [5, 3, 4]
 let subtracting: Set<Int> = setA.subtracting(setB)
 print(subtracting) // [2, 1]
 ```
+
+
