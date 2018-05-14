@@ -496,5 +496,3 @@ print("second class reference property : \(secondClassReference.property)")  // 
 ```
 
 
-
-
