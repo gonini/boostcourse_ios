@@ -1,5 +1,3 @@
-
-
 # Function basics
 
 ### 1. 함수선언의 기본형태
