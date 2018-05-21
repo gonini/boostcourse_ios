@@ -66,7 +66,7 @@
 
 콘텐츠가 상태바, 내비게이션바, 툴바, 탭바를 가리는 것을 방지하는 영역으로 표준 시스템이 제공하는 뷰들은 자동으로 안전 영역 레이아웃 가이드를 준수하게 되있다.
 
-<img src="/Users/hyeju/Desktop/스크린샷 2018-05-21 오후 9.34.37.jpg" width="300px"/>
+<img src="./img/safeArea.jpg" width="300px"/>
 
 
 
@@ -77,7 +77,7 @@
 1. 콘텐츠 허깅 우선도(Content hugging priority) : 다른 제약사항보다 우선도가 높으면 콘텐츠 고유 사이즈보다 뷰가 커지지 않는다.
 2. 콘텐츠 축소 방지 우선도(Content compression resistance priority) : 다른 제약사항보다 우선도가 높으면 콘텐츠 고유 사이즈보다 뷰가 작아지지 않는다.
 
-<img src="/Users/hyeju/Desktop/Untitled-1.jpg" width="500px"/>
+<img src="./img/priorities.jpg" width="500px"/>
 
 
 
