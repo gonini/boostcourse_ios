@@ -2,6 +2,8 @@
 
 사용자의 이목을 끌기 위해 사용하는 화면전환 기법으로 이목을 집중해야 하는 화면을 다른 화면 위로 띄워 표현하는 방식이다. 모달로 보이는 화면을 사라지게 하려면 반드시 특정 선택을 해야한다. 그렇기 때문에 모달은 네비게이션 인터페이스와 달리 정보의 흐름을 가지고 화면을 이동한다기 보단 꼭 이목을 끌어야하는 화면에서 사용한다. 그래서 모달로 보이는 화면은 되도록 단순하고 사용자가 빠르게 처리할 수 있는 내용을 표현하는 것이 좋다.
 
+
+
 ## Presenting a View Controller
 
 뷰 컨트롤러를 화면상에 나타내는 방법은 두 가지다.
@@ -37,3 +39,102 @@
 
 - UIModalPresentationCurrentContext 스타일은 아래 뷰 컨트롤러의 콘텐츠 영역에 콘텐츠를 올리는 형태
 - 프레젠테이션 컨텍스트를 정의하는 뷰 컨트롤러는 프레젠테이션 중 사용할 전환 애니메이션(trasition animations)을 정의할 수 있다. 일반적으로 UIKit은 나타난(presented) 뷰 컨트롤러의 modalTransitionStyle프로퍼티 값을 사용해 뷰 컨트롤러를 애니메이션으로 화면 상에 나타난다. 프레젠테이션 컨텍스트 뷰 컨트롤러(즉, 가려지는 뷰 컨트롤러)의 providesPresentationContextTransitionStyle이 true로 설정된 경우, UIKit은 나타나는 뷰 컨트롤러의 modalTransitionStyle프로퍼티 값 대신 가려지는 뷰 컨트롤러의 modalTransitionStyle 프로퍼티 값을 사용한다.
+
+
+
+##### 커스텀 프레젠테이션 스타일 (Custom Presentation Styles)
+
+- UIModalPresentationCustom 스타일을 사용하면 정의한 커스텀 스타일을 사용해 뷰 컨트롤러를 표시할 수 있다. 커스텀 스타일을 생성하는 것은 UIPresentationContoller를 상송받아 그 메소드를 사용해 커스텀 뷰를 화면 상에 애니메이션으로 나타내고 표시된 뷰 컨트롤러의 크기와 위치를 설정하는 것이다.
+
+
+
+##### 전환 스타일 (Transition Styles)
+
+- 뷰 컨트롤러를 표시하는데 사용하는 애니메이션 유형을 결정한다. 기본으로 제공하는 전환 스타일은 표시할 뷰 컨트롤러의 modalTransition Style 프로퍼티에 지정할 수 있다. 뷰 컨트롤러를 표시할 때, UIKit은 해당 스타일에 맞는 애니메이션을 생성한다.
+- UIModalTransitionStyleCoverVertical이 뷰 컨트롤러를 화면 상에서 어떻게 애니메이션으로 나타내는지를 알 수 있다. 뷰 컨트롤러 B는 화면 밖에서 시작해 애니메이션을 통해 뷰 컨트롤러 A의 위쪽 상단까지 커버한다. 뷰 컨트롤러 B가 사라지면(dismissed) 애니메이션 또한 반전되어 B가 아래로 슬라이드되 A가 드러나게 된다. 애니메이터 객체와 전환 델리게이트(transitioning delegate)를 사용해 커스텀 전환 과정을 생성할 수 있다. 
+
+
+
+####뷰 컨트롤러 나타내기 VS 보여주기 (Presenting VS Showing a View Controller)
+
+'UIViewController' 클래스는 뷰 컨트롤러를 표시하는 두가지 방법이 있다.
+
+1. showViewController:sender와 showDetatilViewController:sender메소드
+
+   뷰 컨트롤러를 표시하는데 가장 적응성이 우수하고 유연한 방법을 제공한다. 이런 메소드를 사용하면 나타내는 뷰 컨트롤러(presenting view controller)가 프레젠테이션을 가장 잘 처리할 방법을 결정할 수 있다.
+
+   예를 들어, 컨테이너 뷰 컨트롤러는 뷰 컨트롤러를 모달 방식으로 표시하는 대신에 이를 서브뷰로 통합할 수 있다. 기본 동작은 모달 방식으로 표시하는 것이다.
+
+2. presentViewController:animated:completion:메소드
+
+   뷰 컨트롤러를 항상 모달 방식으로 표시한다. 이 메소드를 호출하는 뷰 컨트롤러는 프레젠테이션을 처리하지 못할 수 있으나, 프레젠 테이션은 항상 모달 방식을 채택하고 있다.
+
+
+
+##### 뷰 컨트롤러 표시하기 (Presenting a View Controller)
+
+- 뷰 컨트롤러의 프레젠테이션을 시작하는 방법은 여러가지다. 
+  - 세그(segue)를 사용해 뷰 컨트롤러를 자동으로 표시할 수 있다. 세그는 인터페이스 빌더에서 지정한 정보를 사용해 뷰 컨트롤러를 인스턴스화해 표시한다.
+  - showViewController:sender: 또는 showDetailViewController:sender:메소드를 사용해 뷰 컨트롤러를 나타낼 수 있다. 커스텀 뷰 컨트롤러의 경우, 이런 메소드의 동작을 내 뷰 컨트롤러에 적합하게 변경할 수 있다.
+  - presentViewController:animatedLcompletion:메소드를 호출해 뷰 컨트롤러를 모달로 나타낼 수 있다.
+
+
+
+##### 뷰 컨트롤러 보여주기 (Showing View Controllers)
+
+showViewController:sender: 와 showDetailViewController:sender: 메소드를 사용할 때, 새로운 뷰 컨트롤러를 화면에 띄우는 과정이다.
+
+1. 나타나는 뷰 컨트롤러 객체를 만든다.
+2. 새로운 뷰 컨트롤러의 modalPresentationStyle 프로퍼티를 선호하는 스타일로 설정한다.
+3. 뷰 컨트롤러의 modalTransitionStyle 프로퍼티를 원하는 전환 애니메이션 스타일로 설정한다.
+4. 현재 뷰 컨트롤러의 showViewController:sender: 와 showDetailViewController:sender: 메소드를 호출한다.
+
+UIKit은 showViewController:sender: 와 showDetailViewController:sender: 메소드에 대한 호출을 나타내는 뷰 컨트롤러(presenting view controller)에 전달한다. 다음에 해당 뷰 컨트롤러는 프레젠테이션을 가장 효과적으로 수행할 방법을 결정하고, 필요할 경우에 프레젠테이션 및 전환 스타일을 변경할 수 있다. 예를 들어서 네비게이션 컨트롤러가 뷰 컨트롤러를 네비게이션 스택에 푸시할 수 있다.
+
+
+
+##### 뷰 컨트롤러를 모달로 표시하기 (Presenting View Controllers Modally)
+
+뷰 컨트롤러를 직접 나타내는 경우에 'UIKit'에 새 뷰 컨트롤러를 표시하는 방법과 화면상에 애니메이션을 적용하는 방법
+
+1. 나타나는 뷰 컨트롤러 객체를 만든다.
+2. 새로운 뷰 컨트롤러의 modalPresentationStyle 프로퍼티를 선호하는 스타일로 설정한다.
+3. 뷰 컨트롤러의 modalTransitionStyle 프로퍼티를 원하는 전환 애니메이션 스타일로 설정한다.
+4. 현재 뷰 컨트롤러의 presentViewController:animated:completion: 메소드를 호출한다.
+
+'presentViewController:animated:completion:' 메소드를 호출하는 뷰 컨트롤러는 모달 프레젠테이션을 실제로 수행하는 뷰 컨트롤러가 아닐 수도 있다. 프레젠테이션 스타일은 나타내는 뷰 컨트롤러에 필요한 특성을 포함해 뷰 컨트롤러가 나타나는 방식을 결정한다. 예를 들어서, 전체화면 프레젠테이션은 전체화면 뷰 컨트롤러 계층을 탐색한다. 모달 프레젠테이션이 완료되면 'UIKit'은 이에 영향을 받은 뷰 컨트롤러의 'presentingViewController' 및 'presentViewController' 프로퍼티를 업데이트한다.
+
+
+
+##### 팝오버에 뷰 컨트롤러 나타내기 (Presenting a View Controller in a Popover)
+
+팝오버를 나타내려면 추가적인 구성이 필요하다. 모달 프레젠테이션 스타일을 'UIModalPresentationPopover'로 설정한 후, 다음과 같이 팝오버 관련 속성을 구성할 수 있다.
+
+- 뷰 컨트롤러의 preferredContentSize 프로퍼티를 이용해 원하는 크기로 설정할 수 있다.
+- 뷰 컨트롤러의 popoverPresentationController 프로퍼티에서 접근할 수 있는 연관된 UIPopoverPresentationController 객체를 사용해 팝오버 고정 점(popover anchor point)을 설정할 수 있다.
+
+UIPopoverPresentationController 객체를 사용해 필요에 따라 팝오버의 모양을 다른 방식으로 조정할 수 있다. 팝오버 프레젠테이션 컨트롤러는 프레젠테이션 프로세스 중 발생하는 변경에 응답하는 데 사용할 수 있는 델리게이트 객체도 지원한다. 예를 들어서, 팝오버가 나타나거나, 사라지거나, 화면에서 위치가 변경될 때, 델리게이트를 사용해 이에 응답할 수 있다.
+
+
+
+#### 나타난 뷰 컨트롤러 닫기 (Dismissing a Presented View Controller)
+
+나타난 뷰 컨트롤러를 닫기 위해서는 프레젠테이션 뷰 컨트롤러의 dismissViewControllerAnimated:completion: 메소드를 호출해야 한다. 제공된 뷰 컨트롤러 자체에서 이 메소드를 호출할 수도 있다. 표시된 뷰 컨트롤러에서 이 메소드를 호출하면 UIKit은 자동으로 이 요청을 나타내는 뷰 컨트롤러(presenting view controller)로 전달한다. 뷰 컨트롤러를 닫기 전에 항상 중요한 정보를 저장해야한다. 뷰 컨트롤러를 닫으면 뷰 컨트롤러는 뷰 컨트롤러 계층에서 제거되고, 화면에서도 해당 뷰가 제거된다. 따로 저장된 강한 참조가 없는 경우, 뷰 컨트롤러를 닫으면 이와 연결된 뷰 컨트롤러가 메모리에서 해제된다.
+
+
+
+#### 다른 스토리보드에 정의된 뷰 컨트롤러 나타내기 (Presenting a View Controller Defined in a Different Storyboard)
+
+하나의 스토리보드에 있는 뷰 컨트롤러 사이엔 세그를 생성할 수 있지만, 스토리보드 간의 세그는 생성할 수 없다. 다른 스토리보드에 저장된 뷰 컨트롤러를 나타내고 싶을 때 다음과 같이 뷰 컨트롤러를 명시적으로 표시하기 전에 먼저 인스턴스화 해야한다. 아래에서는 뷰 컨트롤러를 모달로 나타내(presents)지만, 뷰 컨트롤러를 네비게이션 컨트롤러에 푸시하거나 다른 방법으로도 나타낼 수 있다.
+
+```swift
+let storyboard: UIStoryboard = UIStoryboard(name: "SecondStoryboard", bundle: nil)
+
+if let myViewController: MyViewController = storyboard.instantiateViewController(withIdentifier: "MyViewController") as? MyViewController {
+	// 뷰 컨트롤러 구성
+	
+	// 뷰 컨트롤러를 나타냄
+	self.present(myViewController, animated: true, completion: nil)
+}
+```
+
