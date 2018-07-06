@@ -39,3 +39,8 @@ present(_ viewControllerToPresent:animated:completion:) : viewControllerToPresen
 **UIImageView**
 
 .isUserInteractionEnabled : imageView를 사용자 인터페이스로 사용할지에 대한 여부로 true로 설정시 tap할 수 있다
+
+.isContentMode : 이미지를 이미지뷰에 표시하는 방식
+
+ - scaleAspectFill : UIImageView의 전체 영역을 채울때 많이 사용 대신 UIImageView의 영역보다 넘어가게되면 사진이 짤려서 나옵니다.
+- scaleAspectFit : UIImageView영역 안에서 이미지가 잘리지 않고 확인 할때 사용
