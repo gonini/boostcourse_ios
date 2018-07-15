@@ -6,7 +6,7 @@ UIKit에는 UIControl을 상속받은 다양한 컨트롤 클래스가 있다. �
 
 **컨트롤 이벤트의 종류**
 
-컨트롤 이벤트는 UIControlEvents라는 타입으로 정의되어 있습니다. 아래는 컨트롤 객체에 발생할 수 있는 이벤트의 종류입니다. 
+컨트롤 이벤트는 UIControlEvents라는 타입으로 정의되어 있다.
 
 **touchDown** : 컨트롤을 터치했을 때 발생하는 이벤트
 
@@ -28,7 +28,7 @@ UIKit에는 UIControl을 상속받은 다양한 컨트롤 클래스가 있다. �
 
 **valueChanged** : 터치를 드래그 및 다른 방법으로 조작하여 값이 변경되었을때 발생하는 이벤트
 
-**primaryActionTriggered** : 버튼이 눌릴때 발생하는 이벤트 (iOS보다는 tvOS에서 사용)
+**primaryActionTriggered** : 버튼이 눌릴때 발생하는 이벤트 (iOS < tvOS)
 
 **editingDidBegin** : UITextField에서 편집이 시작될 때 호출되는 이벤트
 
