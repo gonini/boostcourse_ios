@@ -2,13 +2,7 @@
 
 ### UIButton
 
-사용자의 상호 작용(터치, 탭 등의 이벤트)에 반응해 미리 지정된 코드를 실행하는 컨트롤 요소
-
-**버튼 생성 3단계**
-
-1. 버튼을 생성하고 버튼의 유형을 선택한다.
-2. 버튼을 나타내기 위한 타이틀을 입력하거나, 이미지를 설정한 뒤 크기를 조절한다.
-3. 베튼에 특정 이벤트가 발생할 때 작동할 하나 이상의 메서드를 연결한다.
+사용자의 터치, 탭 등의 이벤트에 반응해 미리 지정된 코드를 실행하는 컨트롤 요소
 
 
 
@@ -17,8 +11,8 @@
 - 버튼의 상태는 다섯가지로 표현할 수 있다.
   - default, highlighted, focused, selected, disabled
   - 버튼의 상태는 조합된 상태일 수 있다. 예) [default + highlighted], [selected + disabled] 등
-- 버튼 생성 시 기본 상태 값은 default
-- 사용자가 버튼과 상호작용을 하면 상태 값은 변하게 된다.
+- 기본 상태 값은 default
+- 사용자가 버튼과 상호작용을 하면 상태 값이 변하게 된다.
 - 프로그래밍 혹은 인터페이스 빌더를 이용해 버튼의 각 상태에 대한 속성을 별도로 지정할 수 있다.
   - 별도로 속성을 지정하지 않으면 UIButton 클래스에서 제공하는 기본 동작을 사용하게 된다.
   - 예) disabled 버튼은 일반적으로 흐리게 표시되며 사용자가 탭 해도 highlighted 되지 않는다.
@@ -27,8 +21,8 @@
 
 **버튼 주요 프로퍼티**
 
-- enum UIButtonType : 버튼의 유형
-  - 버튼의 유형에 따라 버튼의 기본적인 외형과 동작이 달라진다.
+- enum UIButtonType : 버튼 유형
+  - 버튼 유형에 따라 버튼의 기본적인 외형과 동작이 달라진다.
   - 처음 버튼 생성 시 init(type:) 메서드를 이용하거나, 인터페이스 빌더의 "Attribute Inspector"에서 버튼 유형을 지정할 수 있다.
   - 한번 생성된 버튼의 유형은 이후에 바꿀 수 없다.
   - 가장 많이 사용하는 유형은 Custom, System이지만 필요에 따라 다른 유형(Detail Disclosure, Info Light, Info Dark, Add Contact)을 사용할 수 있다.
@@ -40,13 +34,17 @@
 **버튼의 주요 메서드**
 
 ```swift
-func setTitle(String?, for: UIControlState)			//특정 상태의 버튼의 문자열 생성
+// 특정 상태의 버튼의 문자열 설정
+func setTitle(String?, for: UIControlState)
 
-func title(for: UIControlState) -> String?			//특정 상태의 버튼의 문자열 반환
+// 특정 상태의 버튼의 문자열 반환
+func title(for: UIControlState) -> String?
 
-func setImage(UIImage?, for: UIControlState)		// 특정 상태의 버튼 이미지 설정
+// 특정 상태의 버튼 이미지 설정
+func setImage(UIImage?, for: UIControlState)
 
-func image(for: UIControlState) -> UIImage?			// 특정 상태의 버튼 이미지 반환
+// 특정 상태의 버튼 이미지 반환
+func image(for: UIControlState) -> UIImage?
 
 // 특정 상태의 백그라운드 이미지 설정
 func setBackgroundImage(UIImage?, for: UIControlState)
