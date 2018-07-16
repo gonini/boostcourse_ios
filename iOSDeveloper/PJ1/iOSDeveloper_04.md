@@ -6,7 +6,7 @@
 
 **주요 기능**
 
-- 미디어 재생 및 편집 (QuickTime 동영상 및 MPEG-4 파일 재생/생성/편집, HLS 스트림 재생)
+- 미디어 재생 및 편집
 - 디바이스 카메라와 마이크를 이용한 영상 녹화 및 사운드 녹음
 - 시스템 사운드 제어
 - 문자의 음성화
@@ -34,6 +34,8 @@
 **AVAudioPlayer 주요 프로퍼티**
 
 - var isPlaying: Bool : 사운드가 현재 재생중인지 아닌지 여부
+  - A.Pause() 함수가 호출되면 A.isPlaying은 false를 반환
+  - A.Play() 함수를 다시 호출하면 A.isPlaying는 true를 반환
 - var rate: Float : 사운드 재생 속도
 - var numberOfLoops: Int : 사운드 재생 반복 횟수
   - 기본값 : 0 —> 사운드 1회 재생
@@ -69,7 +71,7 @@ func stop()								//사운드 재생 정지
   - Run Loop : 이벤트 처리를 위한 loop
 - 타이머를 생성할 때 반복 여부를 지정한다.
   - 비 반복 타이머 : 한 번 실행된 후 자동으로 무효화
-  - 반복 타이머 : 동일한 run loop에서 특정 TimeInterval 간격으로 실행된다. 반복되는 타이머 기능을 정지하려면 invalidate() 메서드를 호출해 해제시켜야한다.
+  - 반복 타이머 : 동일한 run loop에서 특정 시간 간격으로 실행된다. 반복되는 타이머 기능을 정지하려면 invalidate() 메서드를 호출해 해제시켜야한다.
 
 
 
