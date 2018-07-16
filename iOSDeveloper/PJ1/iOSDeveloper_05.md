@@ -14,7 +14,7 @@ iOS 애플리케이션의 사용자 인터페이스를 구현하고 이벤트를
 
 - View and Control : 화면 콘텐츠 표시
 - View Controller : 사용자 인터페이스 관리
-- Animation and Haptics : 애니메이션과 햅틱을 통한 피드백 제공
+- Animation and Haptics : 애니메이션과 햅틱(힘, 진동, 모션을 적용함으로써 터치의 느낌을 구현하는 기술)을 통한 피드백 제공
 - Window and Screen : 뷰 계층을 위한 윈도우 제공
 
 
@@ -68,3 +68,9 @@ iOS 애플리케이션의 사용자 인터페이스를 구현하고 이벤트를
 
 - URL Loading System : 표준 인터넷 프로토콜을 통해서 URL과 상호작용하고 서버와 통신하는 작업
 - Bonjour : 로컬 네트워크를 위한 작업
+
+
+
+ViewController 파일을 생성하면 import UIKit은 기본적으로 명시되어있지만, import Foundation은 명시되어있지 않다.
+
+이유는 UIKit 프레임워크에서 이미 Foundation 프레임워크를 import했기 때문에 따로 import 하지 않아도 UIKit에 의해 추가되기 때문에 import Foundation은 명시되지 않는다.
