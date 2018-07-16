@@ -6,7 +6,7 @@
 
 ### 외부 변경(External Changes)
 
-슈퍼뷰의 크기나 모양이 변경될 때 발생한다. 각각의 변화와 함께, 사용 가능한 공간을 가장 잘 사용할 수 있도록 뷰 체계의 레이아웃을 업데이트해줘야 한다.
+슈퍼뷰의 크기나 모양이 변경될 때 발생. 각각의 변화와 함께, 사용 가능한 공간을 가장 잘 사용할 수 있도록 뷰 체계의 레이아웃을 업데이트해줘야 한다.
 
 **외부 변경이 발생하는 경우**
 
@@ -49,10 +49,6 @@
 
 ### 오토레이아웃 속성
 
-- Width : 사각형의 너비
-- Height : 사각형의 높이
-- Top : 사각형의 상단
-- Bottom : 사각형의 하단
 - Baseline : 텍스트의 하단
 - Horizontal : 수평
 - Vertical : 수직
@@ -98,23 +94,16 @@ translatesAutoresizingMaskIntoConstraints : 오토레이아웃을 사용하면 �
 **앵커와 관련된 프로퍼티**
 
 ```Swift
-var constraints: [NSLayoutConstraint]				// 뷰에 부여한 제약사항들은 담은 배열
+// 뷰에 부여한 제약사항들은 담은 배열
+var constraints: [NSLayoutConstraint]
 
-var bottomAnchor: NSLayoutYAxisAnchor { get }		// 뷰 프레임의 하단부 레이아웃 앵커
+// 뷰 프레임의 리딩을 가리키는 레이아웃 앵커
+var leadingAnchor: NSLayoutXAxisAnchor { get }
 
-var centerXAnchor: NSLayoutXAxisAnchor { get }		// 뷰 프레임의 수평 중심부 레이아웃 앵커
+// 뷰 프레임의 상단부 레이아웃 앵커
+var topAnchor: NSLayoutYAxisAnchor { get }
 
-var centerYAnchor: NSLayoutYAxisAnchor { get }		// 뷰 프레임의 수직 중심부 레이아웃 앵커
-
-var heightAnchor: NSLayoutDimension { get }			// 뷰 프레임의 높이를 가리키는 레이아웃 앵커
-
-var leadingAnchor: NSLayoutXAxisAnchor { get }		// 뷰 프레임의 리딩을 가리키는 레이아웃 앵커
-
-var topAnchor: NSLayoutYAxisAnchor { get }			// 뷰 프레임의 상단부 레이아웃 앵커
-
-var trailingAnchor: NSLayoutXAxisAnchor { get }
 // 뷰 프레임의 트레일링을 가리키는 레이아웃 앵커
-
-var widthAnchor: NSLayoutDimension { get }			// 뷰 프레임의 넓이를 가리키는 레이아웃 앵커
+var trailingAnchor: NSLayoutXAxisAnchor { get }
 ```
 
