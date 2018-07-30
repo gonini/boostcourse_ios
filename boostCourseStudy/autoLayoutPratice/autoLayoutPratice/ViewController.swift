@@ -13,13 +13,21 @@ class ViewController: UIViewController {
     let bearImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "gom"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     let greetingTextView: UITextView = {
         let textView = UITextView()
-        textView.text = "hello!"
-        textView.font = UIFont.boldSystemFont(ofSize: 18)
+        
+        let attributedText = NSMutableAttributedString(string: "Hello!!!", attributes: [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 18)])
+        
+        attributedText.append(NSAttributedString(string: "\n\n\nAre you ready for loads and loads of fun?", attributes: [NSAttributedStringKey.foregroundColor : UIColor.gray]))
+        
+        textView.attributedText = attributedText
+        
+//        textView.text = "hello!"
+//        textView.font = UIFont.boldSystemFont(ofSize: 18)
         textView.textAlignment = .center
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -28,7 +36,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(bearImageView)
+//        view.addSubview(bearImageView)
         view.addSubview(greetingTextView)
         
         setLayout()
@@ -36,17 +44,27 @@ class ViewController: UIViewController {
 
     private func setLayout() {
         
+        let topImageContainerView = UIView()
+        
+        view.addSubview(topImageContainerView)
+        topImageContainerView.addSubview(bearImageView)
+        
+        topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            // NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 150),
-            // imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            bearImageView.heightAnchor.constraint(equalToConstant: 200),
-            bearImageView.widthAnchor.constraint(equalToConstant: 200),
-            bearImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            bearImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),
+            topImageContainerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5),
+            topImageContainerView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            topImageContainerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            topImageContainerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+    
+            bearImageView.widthAnchor.constraint(equalTo: topImageContainerView.widthAnchor, multiplier: 0.5),
+            bearImageView.heightAnchor.constraint(equalTo: topImageContainerView.heightAnchor, multiplier: 0.5),
+            bearImageView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor),
+            bearImageView.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor),
             
-            greetingTextView.topAnchor.constraint(equalTo: bearImageView.bottomAnchor, constant: 120),
-            greetingTextView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            greetingTextView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            greetingTextView.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor),
+            greetingTextView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20),
+            greetingTextView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
             greetingTextView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
             ])
         
