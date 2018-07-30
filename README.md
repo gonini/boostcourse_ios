@@ -1,1 +1,1 @@
-# boostcamp_ios
+# boostcourse_ios
